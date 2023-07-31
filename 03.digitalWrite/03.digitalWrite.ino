@@ -23,10 +23,21 @@
 
 */
 
-void setup() {
+static unsigned int onBoardLED = 13;
+bool LEDstatus = false;
 
+void setup() {
+Serial.begin(9600);
+Serial.println("Serial monitor configured to 9600");
+Serial.println("---------------------------------");
+pinMode(onBoardLED, OUTPUT);
 }
 
 void loop() {
-
+  LEDstatus = !LEDstatus;
+ digitalWrite(onBoardLED, LEDstatus);
+ Serial.print("onBoardLED value: ");
+ Serial.println(digitalRead(onBoardLED));
+ Serial.println(",");
+ delay(1000);
 }
