@@ -1,5 +1,5 @@
 /*
-  Author: 
+  Author: Sam Luong
   Learning Intention: The students will learn how to wire a pull-up and pull-down switch and configure PINs for digital input and read binary data from those PINs.
   Success Criteria:
     1. I understand how to configure a PIN for input
@@ -20,10 +20,40 @@
     https://github.com/TempeHS/TempeHS_Ardunio_Boilerplate/blob/main/Ardunio_Bootcamp/04.digitalRead/Bootcamp-digitalRead.png
 */
 
-void setup() {
+static unsigned int myLed = 4;
+static unsigned int myBuzzer = 3;
+static unsigned int myButton = 2;
+static unsigned int myLineSensor = 8;
 
+void setup() {
+Serial.begin(9600);
+Serial.println("Serial monitor configured to 9600");
+Serial.println("---------------------------------");
+pinMode(myLed, OUTPUT);
+pinMode(myBuzzer, OUTPUT);
+pinMode(myButton, INPUT);
+pinMode(myLineSensor, INPUT);
 }
 
 void loop() {
+ int val = digitalRead(myButton);
+ int senVal = digitalRead(myLineSensor);
+ Serial.print("myButtonValue:");
+ Serial.print(String(val));
+ Serial.print(",");
+ Serial.print("myLineSensor:");
+ Serial.println(String(senVal));
+ if (val) {
 
+  // myAlert();
+}
+}
+
+void myAlert () {
+ digitalWrite(myLed, HIGH);
+ tone(myBuzzer, 128);
+ delay(500);
+ digitalWrite(myLed, LOW);
+ noTone(myBuzzer);
+ delay(5000);
 }
