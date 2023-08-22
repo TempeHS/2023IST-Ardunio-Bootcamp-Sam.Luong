@@ -30,11 +30,22 @@
   Schematic: 
     
 */
+static unsigned int myLED = 13;
 
 void setup() {
-
+Serial.begin(9600);
+Serial.println("SM Working");
+pinMode(myLED, OUTPUT);
 }
 
 void loop() {
-
+int x = 0;
+while (x < 200) {
+ analogWrite(myLED, HIGH);
+ delay(1000);
+ analogWrite(myLED, LOW);
+ delay(1000);
+ Serial.println(x);
+ x = x + 1;
+}
 }
